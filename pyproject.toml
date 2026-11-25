@@ -1,0 +1,62 @@
+[build-system]
+requires = ["hatchling>=1.25.0"]
+build-backend = "hatchling.build"
+
+[project]
+name = "floodcap-ew"
+version = "0.1.0"
+description = "River-basin flood & flash-flood early-warning engine: Antecedent Precipitation Index (API), Manning open-channel stage-discharge hydraulics, OASIS CAP v1.2 XML alerts, and GSM-7 SMS advisories."
+readme = "README.md"
+license = "MIT"
+requires-python = ">=3.11"
+authors = [
+    { name = "Akandwanaho Ivan Alvin", email = "codesphereinnovationz@gmail.com" },
+]
+keywords = [
+    "flood",
+    "early-warning",
+    "cap",
+    "common-alerting-protocol",
+    "hydrology",
+    "manning",
+    "disaster-resilience",
+    "climate-adaptation",
+]
+dependencies = []
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0.0",
+    "pytest-cov>=5.0.0",
+    "ruff>=0.8.0",
+    "mypy>=1.11.0",
+]
+
+[project.scripts]
+floodcap-ew = "floodcap_ew.cli:main"
+
+[project.urls]
+Homepage = "https://github.com/codesphere-u/floodcap-ew"
+Repository = "https://github.com/codesphere-u/floodcap-ew"
+Issues = "https://github.com/codesphere-u/floodcap-ew/issues"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/floodcap_ew"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 120
+target-version = "py311"
+src = ["src", "tests"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "SIM", "RUF"]
+
+[tool.mypy]
+python_version = "3.11"
+strict = true
+mypy_path = "src"
+packages = ["floodcap_ew"]
